@@ -11,16 +11,15 @@ public class PrimsAlgorithm {
 
     public static void primMST(List<List<Edge>> adjList, int vertices) {
         boolean[] inMST = new boolean[vertices];
-        int[] key = new int[vertices]; // Minimum weight edge to connect
-        int[] parent = new int[vertices]; // To store MST
+        int[] key = new int[vertices]; 
+        int[] parent = new int[vertices];
 
         Arrays.fill(key, Integer.MAX_VALUE);
         Arrays.fill(parent, -1);
 
-        key[0] = 0; // Start from node 0
+        key[0] = 0;
 
         for (int count = 0; count < vertices - 1; count++) {
-            // Pick the minimum key vertex not yet included
             int u = -1;
             int minKey = Integer.MAX_VALUE;
 
@@ -31,9 +30,8 @@ public class PrimsAlgorithm {
                 }
             }
 
-            inMST[u] = true; // Include vertex in MST
+            inMST[u] = true; 
 
-            // Update key and parent for adjacent vertices
             for (Edge edge : adjList.get(u)) {
                 int v = edge.dest;
                 int weight = edge.weight;
@@ -44,7 +42,6 @@ public class PrimsAlgorithm {
             }
         }
 
-        // Print MST
         System.out.println("Edge \tWeight");
         for (int i = 1; i < vertices; i++) {
             System.out.println(parent[i] + " - " + i + "\t" + key[i]);
@@ -58,7 +55,6 @@ public class PrimsAlgorithm {
             adjList.add(new ArrayList<>());
         }
 
-        // Create graph (undirected)
         adjList.get(0).add(new Edge(1, 2));
         adjList.get(0).add(new Edge(3, 6));
         adjList.get(1).add(new Edge(0, 2));
