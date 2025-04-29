@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class DFSExample {
+    static void dfs(int node, boolean[] visited, List<List<Integer>> adjList) {
+        // Mark current node as visited
+        visited[node] = true;
+        System.out.print(node + " ");
+
+        // Visit all adjacent nodes
+        for (int neighbor : adjList.get(node)) {
+            if (!visited[neighbor]) {
+                dfs(neighbor, visited, adjList);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int vertices = 5;
+        
+        // Create adjacency list
+        List<List<Integer>> adjList = new ArrayList<>();
+        for (int i = 0; i < vertices; i++) {
+            adjList.add(new ArrayList<>());
+        }
+
+        // Add edges (undirected example)
+        adjList.get(0).add(1);
+        adjList.get(0).add(2);
+        adjList.get(1).add(0);
+        adjList.get(1).add(3);
+        adjList.get(2).add(0);
+        adjList.get(3).add(1);
+        adjList.get(3).add(4);
+        adjList.get(4).add(3);
+
+        boolean[] visited = new boolean[vertices];
+
+        System.out.println("DFS traversal starting from node 0:");
+        dfs(0, visited, adjList);
+    }
+}
