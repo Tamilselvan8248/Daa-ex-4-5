@@ -35,7 +35,6 @@ public class DijkstraAlgorithm {
             }
         }
 
-        // Print shortest distances
         System.out.println("Vertex \t Distance from Source");
         for (int i = 0; i < n; i++) {
             System.out.println(i + "\t\t" + (dist[i] == Integer.MAX_VALUE ? "INF" : dist[i]));
@@ -50,7 +49,6 @@ public class DijkstraAlgorithm {
             graph.add(new ArrayList<>());
         }
 
-        // Add edges (Example: graph.get(from).add(new Edge(to, weight)))
         graph.get(0).add(new Edge(1, 9));
         graph.get(0).add(new Edge(2, 6));
         graph.get(0).add(new Edge(3, 5));
@@ -58,6 +56,6 @@ public class DijkstraAlgorithm {
         graph.get(2).add(new Edge(1, 2));
         graph.get(2).add(new Edge(3, 4));
 
-        dijkstra(graph, 0); // Source node is 0
+        dijkstra(graph, 0); 
     }
 }
