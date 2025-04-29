@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class BellmanFordAlgorithm {
+    static class Edge {
+        int from, to, weight;
+        Edge(int from, int to, int weight) {
+            this.from = from;
+            this.to = to;
+            this.weight = weight;
+        }
+    }
+
+    public static void bellmanFord(List<Edge> edges, int vertices, int source) {
+        int[] dist = new int[vertices];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[source] = 0;
+
+        // Relax all edges V-1 times
+        for (int i = 1; i <= vertices - 1; i++) {
+            for (Edge edge : edges) {
+                if (dist[edge.from] != Integer.MAX_VALUE && dist[edge.from] + edge.weight < dist[edge.to]) {
+                    dist[edge.to] = dist[edge.from] + edge.weight;
+                }
+            }
+        }
+
+        // Check for negative-weight cycles
+        for (Edge edge : edges) {
+            if (dist[edge.from] != Integer.MAX_VALUE && dist[edge.from] + edge.weight < dist[edge.to]) {
+                System.out.println("Graph contains a negative-weight cycle!");
+                return;
+            }
+        }
+
+        // Print distances
+        System.out.println("Vertex \t Distance from Source");
+        for (int i = 0; i < vertices; i++) {
+            System.out.println(i + "\t\t" + (dist[i] == Integer.MAX_VALUE ? "INF" : dist[i]));
+        }
+    }
+
+    public static void main(String[] args) {
+        int vertices = 5;
+        List<Edge> edges = new ArrayList<>();
+
+        // Add edges (from, to, weight)
+        edges.add(new Edge(0, 1, 9));
+        edges.add(new Edge(0, 2, 6));
+        edges.add(new Edge(0, 3, 5));
+        edges.add(new Edge(0, 4, 3));
+        edges.add(new Edge(2, 1, 2));
+        edges.add(new Edge(2, 3, 4));
+
+        bellmanFord(edges, vertices, 0); // Source is node 0
+    }
+}
