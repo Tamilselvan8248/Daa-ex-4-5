@@ -2,11 +2,9 @@ import java.util.*;
 
 public class DFSExample {
     static void dfs(int node, boolean[] visited, List<List<Integer>> adjList) {
-        // Mark current node as visited
         visited[node] = true;
         System.out.print(node + " ");
 
-        // Visit all adjacent nodes
         for (int neighbor : adjList.get(node)) {
             if (!visited[neighbor]) {
                 dfs(neighbor, visited, adjList);
@@ -17,13 +15,11 @@ public class DFSExample {
     public static void main(String[] args) {
         int vertices = 5;
         
-        // Create adjacency list
         List<List<Integer>> adjList = new ArrayList<>();
         for (int i = 0; i < vertices; i++) {
             adjList.add(new ArrayList<>());
         }
 
-        // Add edges (undirected example)
         adjList.get(0).add(1);
         adjList.get(0).add(2);
         adjList.get(1).add(0);
