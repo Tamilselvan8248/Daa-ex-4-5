@@ -5,7 +5,6 @@ public class BFSExample {
         boolean[] visited = new boolean[vertices];
         Queue<Integer> queue = new LinkedList<>();
 
-        // Start from the starting node
         visited[start] = true;
         queue.add(start);
 
@@ -13,7 +12,6 @@ public class BFSExample {
             int node = queue.poll();
             System.out.print(node + " ");
 
-            // Visit all unvisited neighbors
             for (int neighbor : adjList.get(node)) {
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
@@ -26,13 +24,11 @@ public class BFSExample {
     public static void main(String[] args) {
         int vertices = 5;
 
-        // Create adjacency list
         List<List<Integer>> adjList = new ArrayList<>();
         for (int i = 0; i < vertices; i++) {
             adjList.add(new ArrayList<>());
         }
 
-        // Add edges (undirected example)
         adjList.get(0).add(1);
         adjList.get(0).add(2);
         adjList.get(1).add(0);
